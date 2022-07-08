@@ -14,7 +14,7 @@ $count=0;
     <tr>
         <td>{{$image->id}}</td>
         <td><a href="{{route('show.image')}}">{{$image->name;}}</a></td>
-        <td><img src="{{asset('/storage/uploads/'.$image->p_image.'')}}" alt="" width=150px height=100px></td>
+        <td><img src="{{public_path('/storage/uploads/'.$image->p_image.'')}}" alt="" width=150px height=100px></td>
         <td><a href="{{route('download',['p_image'=>$image->p_image])}}">download</a></td>
         </tr>
        @php $count=$count+1; @endphp

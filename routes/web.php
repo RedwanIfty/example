@@ -23,3 +23,4 @@ Route::get('/show/dashboard',[ImageController::class,'dashboard'])->name('show.d
 Route::get('/mail',[ImageController::class,'mail']);
 Route::post('/mail',[ImageController::class,'mailSubmit']);
 Route::get('/download/{p_image}',[ImageController::class,'download'])->name('download');
+Route::get('/downloadPDF',[ImageController::class,'downloadPdf'])->name('download.pdf');

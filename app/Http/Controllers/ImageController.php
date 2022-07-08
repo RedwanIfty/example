@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendInvitation;
+use PDF;
 
 
 class ImageController extends Controller
@@ -43,12 +44,19 @@ class ImageController extends Controller
         $this->validate($req,[
             "email"=>"required|email"
         ]);
-        Mail::to([$req->email])->send(new SendInvitation("Registration Confirmation","1","IFTY"));
+        Mail::to([$req->email])->send(new SendInvitation("Registration Confirmation","1","Dear you have successfully registered"));
 
     }
     function download($p_image){
      //   $image=Image::where('id',$id)->get(['p_image']);
        // $filePath = public_path($image);
         return response()->download('storage/uploads/'.$p_image);
+    }
+    function downloadPdf(){
+        $image=Image::all();
+      //  return $image;
+        $pdf=PDF::loadView('image.convertPdf',compact('image'));
+       // return $pdf;
+        return $pdf->download('image.pdf');
     }
 }
