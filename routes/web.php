@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
-
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AddItemsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +25,11 @@ Route::get('/mail',[ImageController::class,'mail']);
 Route::post('/mail',[ImageController::class,'mailSubmit']);
 Route::get('/download/{p_image}',[ImageController::class,'download'])->name('download');
 Route::get('/downloadPDF',[ImageController::class,'downloadPdf'])->name('download.pdf');
+
+Route::get('/book',[BookController::class,'book'])->name('book');
+
+Route::post('/book',[BookController::class,'bookSubmit'])->name('book.submit');
+Route::get('/book/show',[BookController::class,'bookShow'])->name('book.show');
+
+Route::get('/item',[AddItemsController::class,'item'])->name('item');
+Route::post('/item',[AddItemsController::class,'itemSubmit'])->name('item.submit');
