@@ -17,6 +17,9 @@ class CreateAdditemsTable extends Migration
             $table->id();
             $table->string('name');
             $table->double('quantiy',8,2);
+            $table->string('quality');
+            $table->string('address');
+            $table->string('home')->nullable;
             $table->timestamps();
         });
     }
