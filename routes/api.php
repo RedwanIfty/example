@@ -21,11 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/news/{type}',[APIController::class,'get']);
 Route::post('/news/create',[APIController::class,'create']);
-Route::get('/news/get/all',[APIController::class,'getAll']);
+Route::get('/news/get/all',[APIController::class,'getAll'])->middleware("loggedNews");
 Route::post('/news/update/{id}',[APIController::class,'update']);
 Route::post('/news/delete/{id}',[APIController::class,'delete']);
 Route::get('/news/date/{postdate}',[APIController::class,'postdate']);
 Route::get('/news/{type}/{postdate}',[APIController::class,'getTypeAndDate']);
 Route::post('/file',[APIController::class,'file']);
 Route::post('/file/delete/{id}',[APIController::class,'deleteFile']);
-Route::get('/file',[APIController::class,'fileView']);
+Route::get('/file',[APIController::class,'fileView'])->middleware("logged");
+Route::post('/login',[APIController::class,'login']);
+Route::post('/logout',[APIController::class,'logout']);
+Route::get('/sell',[APIController::class,'sell']);

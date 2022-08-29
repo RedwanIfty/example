@@ -11,7 +11,7 @@ class SendInvitation extends Mailable
 {
     use Queueable, SerializesModels;
     public $sub;
-    public $u_id;
+   // public $u_id;
     public $u_name;
 
     /**
@@ -19,10 +19,10 @@ class SendInvitation extends Mailable
      *
      * @return void
      */
-    public function __construct($sub,$u_id,$u_name)
+    public function __construct($sub,$u_name)
     {
         $this->sub = $sub;
-        $this->u_id = $u_id;   
+        ///$this->u_id = $u_id;   
         $this->u_name = $u_name;
         
     }
@@ -35,7 +35,7 @@ class SendInvitation extends Mailable
     public function build()
     {
         return $this->view('mails.invitation')
-        ->with('u_id',$this->u_id)
+        //->with('u_id',$this->u_id)
         ->with('u_name',$this->u_name)
         ->subject($this->sub);
     }

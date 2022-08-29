@@ -45,7 +45,7 @@ class ImageController extends Controller
         $this->validate($req,[
             "email"=>"required|email"
         ]);
-        Mail::to([$req->email])->send(new SendInvitation("Registration Confirmation","1","Dear you have successfully registered"));
+        Mail::to([$req->email])->send(new SendInvitation("Registration Confirmation","Dear you have successfully registered"));
 
     }
     function download($p_image){
