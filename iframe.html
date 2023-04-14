@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>
+            iframe
+        </title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+        <!-- include summernote css/js -->
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    </head>
+    <body>
+       
+<div class="summernote"></div>
+    </body>
+<script>
+    $(document).ready(function() {
+  $('.summernote').summernote({
+    toolbar: [
+      ['style', ['style']],
+      ['font', ['bold', 'italic', 'underline', 'clear']],
+      ['fontname', ['fontname']],
+      ['color', ['color']],
+      ['para', ['ul', 'ol', 'paragraph']],
+      ['height', ['height']],
+      ['table', ['table']],
+      ['insert', ['link', 'picture', 'hr']],
+      ['view', ['fullscreen', 'codeview']],
+      ['mybutton', ['myVideo']] // custom button
+    ],
+
+    buttons: {
+      myVideo: function(context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+          contents: '<i class="fa fa-video-camera"/>',
+          tooltip: 'video',
+          click: function() {
+            var div = document.createElement('div');
+           // div.classList.add('embed-container');
+            var iframe = document.createElement('iframe');
+            iframe.src = prompt('Enter video url:');
+            var url=iframe.src;
+            iframe.src=url.replace('watch?v=', 'embed/');
+            iframe.setAttribute('frameborder', 0);
+            iframe.setAttribute('width', '350');
+            iframe.setAttribute('height','315');
+            iframe.setAttribute('allowfullscreen', 0);
+            //div.appendChild(iframe);
+            context.invoke('editor.insertNode', iframe);
+          }
+        });
+
+        return button.render();
+      }
+    }
+  });
+});
+</script>
+    </html>
